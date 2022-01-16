@@ -1,0 +1,111 @@
+<div class="row" style="margin-top: -5px;margin-bottom: 0px;min-height: 100vh;">
+  <div class="col s12 m6">
+    <div class="card indigo darken-2" style="margin-bottom: 0px;">
+      <app-header></app-header>
+      <div class="card-content white-text">
+        <div class="col s5">
+          <form #bookForm="ngForm" (ngSubmit)="onSubmit(bookForm)">
+            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="selectedBook._id">
+            <div class="row">
+              <div class="input-field col s12">
+                <input type="text" class="white-text" name="title" #title="ngModel" [(ngModel)]="selectedBook.title"
+                  placeholder="Enter the title" required>
+                <label>Title:
+                  <label class="red-text">*</label>
+                </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input type="text" class="white-text" name="author" #author="ngModel" [(ngModel)]="selectedBook.author"
+                  placeholder="Enter the author" required>
+                <label>Author:
+                  <label class="red-text">*</label>
+                </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input type="text" class="white-text" name="numOfPages" #numOfPages="ngModel" [(ngModel)]="selectedBook.numOfPages"
+                  placeholder="Enter the number of pages" required>
+                <label>Number of pages:
+                  <label class="red-text">*</label>
+                </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input type="date" class="white-text datepicker" name="dateFrom" #dateFrom="ngModel"
+                  [(ngModel)]="selectedBook.dateFrom" placeholder="Date from" required>
+                <label>Date from:
+                  <label class="red-text">*</label>
+                </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input type="date" class="white-text datepicker" name="dateTo" #dateTo="ngModel" [(ngModel)]="selectedBook.dateTo"
+                  placeholder="Date to">
+                <label>Date to:
+                </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <button class="btn btn-custom right waves-effect lime lighten-3 btn-large" type="button" (click)="resetForm(bookForm)">Reset</button>
+                <div class="right" style="width:10px;height:10px;"></div>
+                <button class="btn btn-custom right light-green btn-flat btn-large" type="submit" [disabled]="!bookForm.valid">Submit</button>
+              </div>
+            </div>
+
+            <div class="row">
+              <input type="hidden">
+            </div>
+            <div class="row">
+              <input type="hidden">
+            </div>
+          </form>
+        </div>
+
+        <div class="col s7">
+          <table class="responsive-table highlight">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Num. of Pages</th>
+                <th>Date From</th>
+                <th>Date To</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tr *ngFor="let b of books">
+              <td>{{b.title}}</td>
+              <td>{{b.author}}</td>
+              <td>{{b.numOfPages}}</td>
+              <td>{{b.dateFrom}}</td>
+              <td>{{b.dateTo}}</td>
+              <td>
+                <a class="action-btn white-text" (click)="onEdit(b)">
+                  <mat-icon>edit</mat-icon>
+                </a>
+              </td>
+              <td>
+                <a class="action-btn white-text" (click)="onDelete(b)">
+                  <mat-icon>delete</mat-icon>
+                </a>
+              </td>
+            </tr>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
